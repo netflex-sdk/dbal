@@ -17,16 +17,11 @@
             "Netflex\\DBAL\\": "src/"
         }
     },
-    "config": {
-        "platform": {
-            "php": "7.4.0"
-        }
-    },
     "require": {
         "php": "^7.4",
         "netflex/api": "^4.0",
         "illuminate/support": "^8.0",
         "doctrine/dbal": "^2.0",
-        "netflex/query-builder": "^4.21"
+        "netflex/query-builder": "^4.0"
     }
 }

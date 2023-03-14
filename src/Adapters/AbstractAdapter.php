@@ -3,30 +3,31 @@
 namespace Netflex\DBAL\Adapters;
 
 use Closure;
-use Netflex\DBAL\Contracts\DatabaseAdapter;
-use Netflex\DBAL\PDOStatement;
 use RuntimeException;
+
+use Netflex\DBAL\PDOStatement;
+use Netflex\DBAL\Contracts\DatabaseAdapter;
 
 abstract class AbstractAdapter implements DatabaseAdapter
 {
     public function select(PDOStatement $statement, array $arguments, Closure $closure): bool
     {
-        throw new RuntimeException('This connnection does not implement select');
+        throw new RuntimeException('Method not implemented [' . __FUNCTION__ . ']');
     }
 
     public function insert(PDOStatement $statement, array $arguments, Closure $closure): bool
     {
-        throw new RuntimeException('This connnection does not implement insert');
+        throw new RuntimeException('Method not implemented [' . __FUNCTION__ . ']');
     }
 
     public function update(PDOStatement $statement, array $arguments, Closure $closure): bool
     {
-        throw new RuntimeException('This connnection does not implement update');
+        throw new RuntimeException('Method not implemented [' . __FUNCTION__ . ']');
     }
 
     public function delete(PDOStatement $statement, array $arguments, Closure $closure): bool
     {
-        throw new RuntimeException('This connnection does not implement delete');
+        throw new RuntimeException('Method not implemented [' . __FUNCTION__ . ']');
     }
 
     public function tableExists(PDOStatement $statement, array $arguments, Closure $callback): bool
@@ -36,12 +37,12 @@ abstract class AbstractAdapter implements DatabaseAdapter
 
     public function createTable(PDOStatement $statement, array $arguments, Closure $callback): bool
     {
-        throw new RuntimeException('This connnection does not implement create table');
+        throw new RuntimeException('Method not implemented [' . __FUNCTION__ . ']');
     }
 
     public function dropTable(PDOStatement $statement, array $arguments, Closure $callback): bool
     {
-        throw new RuntimeException('This connnection does not implement drop table');
+        throw new RuntimeException('Method not implemented [' . __FUNCTION__ . ']');
     }
 
     public function dropTableIfExists(PDOStatement $statement, array $arguments, Closure $callback): bool
@@ -51,7 +52,7 @@ abstract class AbstractAdapter implements DatabaseAdapter
 
     public function selectColumns(PDOStatement $statement, array $arguments, Closure $callback): bool
     {
-        throw new RuntimeException('This connnection does not implement columns');
+        throw new RuntimeException('Method not implemented [' . __FUNCTION__ . ']');
     }
 
     public function columnExists(PDOStatement $statement, array $arguments, Closure $callback): bool
@@ -61,17 +62,17 @@ abstract class AbstractAdapter implements DatabaseAdapter
 
     public function addColumn(PDOStatement $statement, array $arguments, Closure $callback): bool
     {
-        throw new RuntimeException('This connnection does not implement add column');
+        throw new RuntimeException('Method not implemented [' . __FUNCTION__ . ']');
     }
 
     public function alterColumn(PDOStatement $statement, array $arguments, Closure $callback): bool
     {
-        throw new RuntimeException('This connnection does not implement alter column');
+        throw new RuntimeException('Method not implemented [' . __FUNCTION__ . ']');
     }
 
     public function dropColumn(PDOStatement $statement, array $arguments, Closure $callback): bool
     {
-        throw new RuntimeException('This connnection does not implement drop column');
+        throw new RuntimeException('Method not implemented [' . __FUNCTION__ . ']');
     }
 
     public function dropColumnIfExists(PDOStatement $statement, array $arguments, Closure $callback): bool
