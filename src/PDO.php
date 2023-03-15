@@ -1,13 +1,13 @@
 <?php
 
-namespace Netflex\DBAL;
+namespace Netflex\Database\DBAL;
 
 use PDO as BasePDO;
 
 use Netflex\API\Contracts\APIClient;
 use Netflex\API\Facades\API;
-use Netflex\DBAL\Contracts\DatabaseAdapter;
 use Netflex\Query\Builder;
+use Netflex\Database\DBAL\Contracts\DatabaseAdapter;
 
 final class PDO extends BasePDO
 {
@@ -50,7 +50,7 @@ final class PDO extends BasePDO
      * @param string|null $seqname
      * @return string|false
      **/
-    public function lastInsertId($seqname = null)
+    public function lastInsertId($seqname = null): string|false
     {
         if ($this->lastInsertId) {
             return $this->lastInsertId;
@@ -99,7 +99,7 @@ final class PDO extends BasePDO
      * Execute an SQL statement and return the number of affected rows
      * @return int|false
      **/
-    public function exec($query, ?array $output = null, ?int $return_var = null)
+    public function exec($query, ?array $output = null, ?int $return_var = null): int|false
     {
         $statement = new PDOStatement($this, $query);
         $statement->execute();
@@ -112,7 +112,7 @@ final class PDO extends BasePDO
      * @param int $attribute
      * @return mixed
      **/
-    public function getAttribute($attribute)
+    public function getAttribute($attribute): mixed
     {
         return null;
     }
@@ -148,7 +148,7 @@ final class PDO extends BasePDO
      * @param array|null $options
      * @return PDOStatement|false
      **/
-    public function prepare($statement, $options = null)
+    public function prepare($statement, $options = null): PDOStatement|false
     {
         return new PDOStatement($this, $statement);
     }
@@ -157,7 +157,7 @@ final class PDO extends BasePDO
      * Prepares and executes an SQL statement without placeholders
      * @return PDOStatement|false
      **/
-    public function query(string $query, ?int $fetchMode = null, ...$fetchModeArgs)
+    public function query(string $query, ?int $fetchMode = null, ...$fetchModeArgs): PDOStatement|false
     {
         return new PDOStatement($this, $query);
     }
@@ -168,7 +168,7 @@ final class PDO extends BasePDO
      * @param int $paramtype Provides a data type hint for drivers that have alternate quoting styles.
      * @return string|false
      **/
-    public function quote($string, $paramtype = BasePDO::PARAM_STR)
+    public function quote($string, $paramtype = BasePDO::PARAM_STR): string|false
     {
         $builder = new Builder();
         return $builder->escapeValue($string);

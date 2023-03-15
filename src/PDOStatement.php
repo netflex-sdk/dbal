@@ -1,13 +1,13 @@
 <?php
 
-namespace Netflex\DBAL;
+namespace Netflex\Database\DBAL;
 
 use Exception;
 
 use PDOException;
 use PDOStatement as BasePDOStatement;
 
-use Netflex\DBAL\Contracts\DatabaseAdapter;
+use Netflex\Database\DBAL\Contracts\DatabaseAdapter;
 
 final class PDOStatement extends BasePDOStatement
 {
@@ -49,7 +49,7 @@ final class PDOStatement extends BasePDOStatement
         return $this->errorInfo;
     }
 
-    public function fetch($how = null, $orientation = null, $offset = null)
+    public function fetch($how = null, $orientation = null, $offset = null): mixed
     {
         if ($this->result) {
             if (!isset($this->result['hits'])) {
@@ -67,7 +67,7 @@ final class PDOStatement extends BasePDOStatement
         return false;
     }
 
-    public function fetchAll($mode = PDO::FETCH_BOTH, $class_name = null, $ctor_args = null): array
+    public function fetchAll($mode = PDO::FETCH_DEFAULT, mixed ...$args): array
     {
         if ($this->result) {
             if (!isset($this->result['hits'])) {
@@ -154,5 +154,10 @@ final class PDOStatement extends BasePDOStatement
         }
 
         return false;
+    }
+
+    public function setFetchMode($mode, $className = null, ...$params)
+    {
+        return true;
     }
 }

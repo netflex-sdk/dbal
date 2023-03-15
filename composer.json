@@ -6,6 +6,7 @@
         "netflex",
         "database"
     ],
+    "license": "MIT",
     "authors": [
         {
             "name": "Thomas Alrek",
@@ -14,14 +15,15 @@
     ],
     "autoload": {
         "psr-4": {
-            "Netflex\\DBAL\\": "src/"
+            "Netflex\\Database\\DBAL\\": "src/"
         }
     },
     "require": {
-        "php": "^7.4",
+        "php": "^8.0",
+        "ext-pdo_sqlite": "*",
         "netflex/api": "^4.0",
-        "illuminate/support": "^8.0",
-        "doctrine/dbal": "^2.0",
+        "illuminate/support": "^8.0|^9.0|^10.0",
+        "doctrine/dbal": "^3.0",
         "netflex/query-builder": "^4.0"
     }
 }

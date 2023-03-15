@@ -1,12 +1,12 @@
 <?php
 
-namespace Netflex\DBAL\Adapters;
+namespace Netflex\Database\DBAL\Adapters;
 
 use Closure;
 use RuntimeException;
 
-use Netflex\DBAL\PDOStatement;
-use Netflex\DBAL\Concerns\PerformsQueries;
+use Netflex\Database\DBAL\PDOStatement;
+use Netflex\Database\DBAL\Concerns\PerformsQueries;
 
 final class ReadOnlyAdapter extends AbstractAdapter
 {
@@ -34,11 +34,6 @@ final class ReadOnlyAdapter extends AbstractAdapter
     }
 
     public function dropTable(PDOStatement $statement, array $arguments, Closure $callback): bool
-    {
-        throw new RuntimeException('This connection is read-only');
-    }
-
-    public function selectColumns(PDOStatement $statement, array $arguments, Closure $callback): bool
     {
         throw new RuntimeException('This connection is read-only');
     }
