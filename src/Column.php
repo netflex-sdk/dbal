@@ -2,10 +2,11 @@
 
 namespace Netflex\Database\DBAL;
 
+use RuntimeException;
+
 use Illuminate\Support\Str;
 
 use Doctrine\DBAL\Exception;
-
 use Doctrine\DBAL\Schema\Column as DoctrineColumn;
 use Doctrine\DBAL\Types\ArrayType;
 use Doctrine\DBAL\Types\BooleanType;
@@ -42,7 +43,7 @@ final class Column
     public static function mapField(array $field): Column
     {
         return new static([
-            'column'  => $field['column'] ?? $field['alias'] ?? throw new Exception('Missing column name'),
+            'column'  => $field['column'] ?? $field['alias'] ?? throw new RuntimeException('Missing column name'),
             'type'   => $field['type'],
             'notnull' => false,
             'default' => data_get($field, 'config.default_value.value', null),
