@@ -18,6 +18,7 @@ interface DatabaseAdapter
     public function dropTable(PDOStatement $statement, array $arguments, Closure $callback): bool;
     public function dropTableIfExists(PDOStatement $statement, array $arguments, Closure $callback): bool;
 
+    public function getReservedFields(): array;
     public function selectColumns(PDOStatement $statement, array $arguments, Closure $callback): bool;
     public function columnExists(PDOStatement $statement, array $arguments, Closure $callback): bool;
     public function addColumn(PDOStatement $statement, array $arguments, Closure $callback): bool;

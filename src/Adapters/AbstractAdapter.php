@@ -5,6 +5,7 @@ namespace Netflex\Database\DBAL\Adapters;
 use Closure;
 use RuntimeException;
 
+use Netflex\Database\DBAL\Column;
 use Netflex\Database\DBAL\PDOStatement;
 use Netflex\Database\DBAL\Contracts\DatabaseAdapter;
 use Netflex\Database\Driver\Connection;
@@ -12,6 +13,8 @@ use Netflex\Database\Driver\Connection;
 abstract class AbstractAdapter implements DatabaseAdapter
 {
     protected Connection $connection;
+
+    protected array $reservedFields = [];
 
     public function __construct(Connection $connection)
     {
@@ -55,16 +58,42 @@ abstract class AbstractAdapter implements DatabaseAdapter
 
     public function dropTableIfExists(PDOStatement $statement, array $arguments, Closure $callback): bool
     {
+        if ($this->tableExists($statement, $arguments, $callback)) {
+            return $this->dropTable($statement, $arguments, $callback);
+        }
+
         return false;
+    }
+
+    public function getReservedFields(): array
+    {
+        return $this->reservedFields;
     }
 
     public function selectColumns(PDOStatement $statement, array $arguments, Closure $callback): bool
     {
-        throw new RuntimeException('Method [' . __FUNCTION__ . '] not implemented for connection [' . $this->connection->getName() . '] (Adapter: ' . get_class($this->connection->getAdapter()) . ')');
+        $table = $arguments['table'];
+        $fields = Column::getReservedFields($this->connection, $table);
+
+        $callback($fields);
+
+        return true;
     }
 
     public function columnExists(PDOStatement $statement, array $arguments, Closure $callback): bool
     {
+        $columns = [];
+
+        $this->selectColumns($statement, $arguments, function ($fields) use (&$columns) {
+            $columns = $fields;
+        });
+
+        foreach ($columns as $column) {
+            if ($column === $arguments['column']) {
+                return true;
+            }
+        }
+
         return false;
     }
 
@@ -85,6 +114,8 @@ abstract class AbstractAdapter implements DatabaseAdapter
 
     public function dropColumnIfExists(PDOStatement $statement, array $arguments, Closure $callback): bool
     {
-        return false;
+        if ($this->columnExists($statement, $arguments, $callback)) {
+            return $this->dropColumn($statement, $arguments, $callback);
+        }
     }
 }
