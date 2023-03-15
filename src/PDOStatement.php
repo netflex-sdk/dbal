@@ -49,7 +49,7 @@ final class PDOStatement extends BasePDOStatement
         return $this->errorInfo;
     }
 
-    public function fetch($how = null, $orientation = null, $offset = null)
+    public function fetch($how = null, $orientation = null, $offset = null): mixed
     {
         if ($this->result) {
             if (!isset($this->result['hits'])) {
@@ -67,7 +67,7 @@ final class PDOStatement extends BasePDOStatement
         return false;
     }
 
-    public function fetchAll($mode = PDO::FETCH_BOTH, $class_name = null, $ctor_args = null): array
+    public function fetchAll($mode = PDO::FETCH_DEFAULT, mixed ...$args): array
     {
         if ($this->result) {
             if (!isset($this->result['hits'])) {
