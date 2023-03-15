@@ -42,7 +42,7 @@ final class Column
     public static function mapField(array $field): Column
     {
         return new static([
-            'column'  => $field['alias'],
+            'column'  => $field['column'] ?? $field['alias'] ?? throw new Exception('Missing column name'),
             'type'   => $field['type'],
             'notnull' => false,
             'default' => data_get($field, 'config.default_value.value', null),
@@ -119,7 +119,7 @@ final class Column
     public function options(): array
     {
         return collect($this->column)
-            ->except(['field', 'type'])
+            ->except(['column', 'type'])
             ->toArray();
     }
 }
