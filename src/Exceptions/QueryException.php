@@ -33,4 +33,9 @@ class QueryException extends Exception
 
         return $previous->getMessage();
     }
+
+    public function make($_, $query, $bindings, Throwable $previous): QueryException
+    {
+        return new static($query, $bindings, $previous);
+    }
 }
