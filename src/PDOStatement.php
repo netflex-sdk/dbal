@@ -155,4 +155,9 @@ final class PDOStatement extends BasePDOStatement
 
         return false;
     }
+
+    public function setFetchMode($mode, $className = null, ...$params)
+    {
+        return true;
+    }
 }

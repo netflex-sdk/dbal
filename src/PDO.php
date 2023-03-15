@@ -3,7 +3,6 @@
 namespace Netflex\Database\DBAL;
 
 use PDO as BasePDO;
-use ReturnTypeWillChange;
 
 use Netflex\API\Contracts\APIClient;
 use Netflex\API\Facades\API;
