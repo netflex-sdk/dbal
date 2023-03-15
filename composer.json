@@ -14,7 +14,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Netflex\\DBAL\\": "src/"
+            "Netflex\\Database\\DBAL\\": "src/"
         }
     },
     "require": {

@@ -1,12 +1,12 @@
 <?php
 
-namespace Netflex\DBAL\Adapters;
+namespace Netflex\Database\DBAL\Adapters;
 
 use Closure;
 use RuntimeException;
 
-use Netflex\DBAL\PDOStatement;
-use Netflex\DBAL\Contracts\DatabaseAdapter;
+use Netflex\Database\DBAL\PDOStatement;
+use Netflex\Database\DBAL\Contracts\DatabaseAdapter;
 
 abstract class AbstractAdapter implements DatabaseAdapter
 {

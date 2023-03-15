@@ -1,13 +1,13 @@
 <?php
 
-namespace Netflex\DBAL;
+namespace Netflex\Database\DBAL;
 
 use Exception;
 
 use PDOException;
 use PDOStatement as BasePDOStatement;
 
-use Netflex\DBAL\Contracts\DatabaseAdapter;
+use Netflex\Database\DBAL\Contracts\DatabaseAdapter;
 
 final class PDOStatement extends BasePDOStatement
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Netflex\DBAL;
+namespace Netflex\Database\DBAL;
 
 final class Command
 {

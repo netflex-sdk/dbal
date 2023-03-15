@@ -1,12 +1,12 @@
 <?php
 
-namespace Netflex\DBAL\Concerns;
+namespace Netflex\Database\DBAL\Concerns;
 
 use Closure;
 use PDOException;
 
-use Netflex\DBAL\PDOStatement;
-use Netflex\DBAL\Contracts\DatabaseAdapter;
+use Netflex\Database\DBAL\PDOStatement;
+use Netflex\Database\DBAL\Contracts\DatabaseAdapter;
 
 use GuzzleHttp\Exception\ServerException;
 

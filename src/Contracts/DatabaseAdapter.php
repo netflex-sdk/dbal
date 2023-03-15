@@ -1,10 +1,10 @@
 <?php
 
-namespace Netflex\DBAL\Contracts;
+namespace Netflex\Database\DBAL\Contracts;
 
 use Closure;
 
-use Netflex\DBAL\PDOStatement;
+use Netflex\Database\DBAL\PDOStatement;
 
 interface DatabaseAdapter
 {

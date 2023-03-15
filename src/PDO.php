@@ -1,13 +1,13 @@
 <?php
 
-namespace Netflex\DBAL;
+namespace Netflex\Database\DBAL;
 
 use PDO as BasePDO;
 
 use Netflex\API\Contracts\APIClient;
 use Netflex\API\Facades\API;
-use Netflex\DBAL\Contracts\DatabaseAdapter;
 use Netflex\Query\Builder;
+use Netflex\Database\DBAL\Contracts\DatabaseAdapter;
 
 final class PDO extends BasePDO
 {
