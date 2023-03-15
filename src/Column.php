@@ -6,6 +6,7 @@ use RuntimeException;
 
 use Illuminate\Support\Str;
 
+use Doctrine\DBAL\Types\Types;
 use Doctrine\DBAL\Exception;
 use Doctrine\DBAL\Schema\Column as DoctrineColumn;
 use Doctrine\DBAL\Types\ArrayType;
@@ -89,6 +90,38 @@ final class Column
     public function type(): string
     {
         return $this->column['type'];
+    }
+
+    public static function mapType(string $type): string
+    {
+        switch ($type) {
+            case Types::ASCII_STRING:
+            case Types::STRING:
+            case Types::GUID:
+            case Types::BIGINT:
+                return 'text';
+            case Types::TEXT:
+            case Types::BLOB:
+            case Types::BINARY:
+                return 'textarea';
+            case Types::ARRAY:
+            case Types::SIMPLE_ARRAY:
+                return 'tags';
+            case Types::BOOLEAN:
+                return 'checkbox';
+            case Types::DECIMAL:
+                return 'float';
+            case Types::DATE_MUTABLE:
+            case Types::DATE_IMMUTABLE:
+                return 'date';
+            case Types::DATETIME_MUTABLE:
+            case Types::DATETIME_IMMUTABLE:
+            case Types::DATETIMETZ_MUTABLE:
+            case Types::DATETIMETZ_IMMUTABLE:
+                return 'datetime';
+            default:
+                return 'text';
+        }
     }
 
     public function doctrineType(): Type
