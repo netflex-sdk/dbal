@@ -18,7 +18,7 @@ class QueryException extends Exception
     protected function formatMessage($query, $bindings, Throwable $previous)
     {
         if ($parsed = json_decode($query)) {
-            $action = $parsed->action ?? null;
+            $command = $parsed->command ?? null;
 
             if ($request = ($parsed->request ?? null)) {
                 if (isset($request->body) || isset($request->aggs)) {
@@ -26,8 +26,8 @@ class QueryException extends Exception
                 }
             }
 
-            if ($action) {
-                return $previous->getMessage() . ' [' . $action . ']';
+            if ($command) {
+                return $previous->getMessage() . ' (Command: ' . $command . ')';
             }
         }
 
