@@ -3,13 +3,13 @@
 namespace Netflex\Database\DBAL\Doctrine;
 
 use Netflex\Database\DBAL\Column;
-use Netflex\Database\Driver\Connection;
+use Netflex\Database\DBAL\Contracts\Connection;
 
 use Doctrine\DBAL\Connection as DoctrineConnection;
 use Doctrine\DBAL\Schema\AbstractSchemaManager;
 use Doctrine\DBAL\Schema\Column as DoctrineColumn;
-use Exception;
-use Netflex\Database\Driver\Schema\Grammars\SelectColumns;
+
+use Netflex\Database\DBAL\Grammars\SelectColumns;
 
 class SchemaManager extends AbstractSchemaManager
 {

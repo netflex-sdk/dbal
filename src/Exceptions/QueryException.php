@@ -5,7 +5,7 @@ namespace Netflex\Database\DBAL\Exceptions;
 use Throwable;
 use Illuminate\Database\QueryException as Exception;
 
-class QueryException extends Exception
+final class QueryException extends Exception
 {
     /**
      * Format the SQL error message.
