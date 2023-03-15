@@ -21,9 +21,9 @@ class QueryException extends Exception
         if ($parsed = json_decode($query)) {
             $command = $parsed->command ?? null;
 
-            if ($request = ($parsed->request ?? null)) {
+            if ($request = ($parsed->arguments ?? null)) {
                 if (isset($request->body) || isset($request->aggs)) {
-                    return $previous->getMessage() . ' (Connection: ' . $connection . ', Query: ' . json_encode($request) . ')';
+                    return $previous->getMessage() . ' (Connection: ' . $connection . ', Query: ' . json_encode($request, JSON_PRETTY_PRINT) . ')';
                 }
             }
 
