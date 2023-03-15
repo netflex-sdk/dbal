@@ -15,7 +15,8 @@ use Doctrine\DBAL\Types\IntegerType;
 use Doctrine\DBAL\Types\SimpleArrayType;
 use Doctrine\DBAL\Types\TextType;
 use Doctrine\DBAL\Types\Type;
-use Netflex\Database\Driver\Connection;
+
+use Netflex\Database\DBAL\Contracts\Connection;
 
 final class Column
 {

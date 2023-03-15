@@ -8,7 +8,7 @@ use RuntimeException;
 use Netflex\Database\DBAL\Column;
 use Netflex\Database\DBAL\PDOStatement;
 use Netflex\Database\DBAL\Contracts\DatabaseAdapter;
-use Netflex\Database\Driver\Connection;
+use Netflex\Database\DBAL\Contracts\Connection;
 
 abstract class AbstractAdapter implements DatabaseAdapter
 {
@@ -117,5 +117,7 @@ abstract class AbstractAdapter implements DatabaseAdapter
         if ($this->columnExists($statement, $arguments, $callback)) {
             return $this->dropColumn($statement, $arguments, $callback);
         }
+
+        return false;
     }
 }

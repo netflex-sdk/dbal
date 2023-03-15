@@ -5,11 +5,10 @@ namespace Netflex\Database\DBAL\Doctrine;
 use Doctrine\DBAL\Connection as DBALConnection;
 use Doctrine\DBAL\Driver\Connection;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use Doctrine\DBAL\Schema\AbstractSchemaManager;
 use Doctrine\DBAL\Driver as DoctrineDriver;
 use Doctrine\DBAL\Driver\API\ExceptionConverter as ExceptionConverterContract;
 
-use Netflex\Database\Driver\Connection as DriverConnection;
+use Netflex\Database\DBAL\Contracts\Connection as DriverConnection;
 use Netflex\Database\DBAL\Doctrine\ExceptionConverter;
 
 class Driver implements DoctrineDriver
@@ -22,10 +21,11 @@ class Driver implements DoctrineDriver
     }
 
     /**
-     * @return Connection The database connection.
+     * @return DBALConnection The database connection.
      */
     public function connect(array $params, $username = null, $password = null, array $driverOptions = [])
     {
+        return new DBALConnection($params, $this);
     }
 
     /**
@@ -62,6 +62,7 @@ class Driver implements DoctrineDriver
      */
     public function getDatabase(Connection $conn)
     {
+        return get_class($this->connection->getAdapter());
     }
 
     public function getExceptionConverter(): ExceptionConverterContract
