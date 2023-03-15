@@ -38,11 +38,6 @@ final class ReadOnlyAdapter extends AbstractAdapter
         throw new RuntimeException('This connection is read-only');
     }
 
-    public function selectColumns(PDOStatement $statement, array $arguments, Closure $callback): bool
-    {
-        throw new RuntimeException('This connection is read-only');
-    }
-
     public function addColumn(PDOStatement $statement, array $arguments, Closure $callback): bool
     {
         throw new RuntimeException('This connection is read-only');
