@@ -126,7 +126,7 @@ final class Column
             case Types::DATETIMETZ_IMMUTABLE:
                 return 'datetime';
             default:
-                return 'text';
+                return $type;
         }
     }
 
