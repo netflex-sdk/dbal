@@ -31,7 +31,7 @@ abstract class AbstractAdapter implements DatabaseAdapter
         if ($tablePrefix = $this->tablePrefix) {
             $connection = $this->connection;
 
-            if (!$connection->getTablePrefix() || Str::startsWith($connection->getTablePrefix(), $tablePrefix)) {
+            if (!$connection->getTablePrefix() || !Str::startsWith($connection->getTablePrefix(), $tablePrefix)) {
                 $connection->setTablePrefix($tablePrefix . $connection->getTablePrefix());
             }
         }
