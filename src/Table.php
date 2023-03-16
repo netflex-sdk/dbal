@@ -3,6 +3,7 @@
 namespace Netflex\Database\DBAL;
 
 use Illuminate\Support\Str;
+use Netflex\Database\DBAL\Contracts\Connection;
 
 final class Table
 {
@@ -18,5 +19,10 @@ final class Table
     public static function normalizeName($name)
     {
         return Str::replace('_', ' ', Str::title($name));
+    }
+
+    public static function getReservedTableNames(Connection $connection): array
+    {
+        return $connection->getAdapter()->getReservedTableNames();
     }
 }
