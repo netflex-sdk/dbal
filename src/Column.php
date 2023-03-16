@@ -29,12 +29,12 @@ final class Column
 
     public static function reserved(Connection $connection): array
     {
-        return $connection->getAdapter()->getReservedFields();
+        return $connection->getAdapter()->getReservedColumns();
     }
 
     public static function isReserved(Connection $connection, string $name): bool
     {
-        return in_array($name, static::reserved($connection));
+        return array_key_exists($name, static::reserved($connection));
     }
 
     public static function normalizeName($name)
@@ -59,7 +59,7 @@ final class Column
         ]);
     }
 
-    public static function getReservedFields(Connection $connection, string $table): array
+    public static function getReservedColumns(Connection $connection): array
     {
         return collect(static::reserved($connection))
             ->map(fn ($field, $key) => [
