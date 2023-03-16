@@ -52,7 +52,7 @@ final class Column
 
         return new static([
             'column'  => $field['column'] ?? $field['alias'],
-            'type'   => $field['type'],
+            'type'    => $field['type'],
             'notnull' => false,
             'default' => data_get($field, 'config.default_value.value', null),
             'comment' => $field['description'] ?? '',
@@ -63,12 +63,12 @@ final class Column
     {
         return collect(static::reserved($connection))
             ->map(fn ($field, $key) => [
-                'column'  => $key,
-                'type'   => $field['type'],
-                'notnull' => $field['notnull'] ?? false,
-                'default' => $field['default'] ?? null,
+                'column'        => $key,
+                'type'          => $field['type'],
+                'notnull'       => $field['notnull'] ?? false,
+                'default'       => $field['default'] ?? null,
                 'autoincrement' => $field['autoincrement'] ?? false,
-                'comment' => $field['comment'] ?? '',
+                'comment'       => $field['comment'] ?? '',
             ])
             ->values()
             ->map(fn ($field) => new static($field))

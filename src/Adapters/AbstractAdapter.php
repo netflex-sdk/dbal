@@ -7,6 +7,7 @@ use RuntimeException;
 
 use Netflex\Database\DBAL\Column;
 use Netflex\Database\DBAL\PDOStatement;
+use Netflex\Database\DBAL\Concerns\PerformsQueries;
 use Netflex\Database\DBAL\Contracts\DatabaseAdapter;
 use Netflex\Database\DBAL\Contracts\Connection;
 
@@ -14,6 +15,10 @@ use Illuminate\Support\Str;
 
 abstract class AbstractAdapter implements DatabaseAdapter
 {
+    use PerformsQueries {
+        select as performSelect;
+    }
+
     protected Connection $connection;
 
     protected string $tablePrefix = '';
@@ -24,6 +29,11 @@ abstract class AbstractAdapter implements DatabaseAdapter
     {
         $this->connection = $connection;
         $this->setTablePrefix();
+    }
+
+    protected function getTableName(string $table): string
+    {
+        return $table;
     }
 
     protected function setTablePrefix()
@@ -37,9 +47,11 @@ abstract class AbstractAdapter implements DatabaseAdapter
         }
     }
 
-    public function select(PDOStatement $statement, array $arguments, Closure $closure): bool
+    public function select(PDOStatement $statement, array $arguments, Closure $callback): bool
     {
-        throw new RuntimeException('Method [' . __FUNCTION__ . '] not implemented for connection [' . $this->connection->getName() . '] (Adapter: ' . get_class($this->connection->getAdapter()) . ')');
+        $arguments['table'] = $this->getTableName($arguments['table']);
+
+        return $this->performSelect($statement, $arguments, $callback);
     }
 
     public function insert(PDOStatement $statement, array $arguments, Closure $closure): bool
