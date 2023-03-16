@@ -35,7 +35,7 @@ class SchemaManager extends AbstractSchemaManager
         $pdo = $this->connection->getPdo();
         $statement = $pdo->prepare(SelectColumns::compile($this->connection, $table));
         $statement->execute();
-        $fields = array_map(fn ($field) => Column::mapField($field), $statement->fetchAll());
+        $fields = $statement->fetchAll();
 
         return array_map(fn ($field) => $this->_getPortableTableColumnDefinition($field), $fields);
     }
