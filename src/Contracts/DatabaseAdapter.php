@@ -3,7 +3,7 @@
 namespace Netflex\Database\DBAL\Contracts;
 
 use Closure;
-use Netflex\Database\DBAL\Column;
+
 use Netflex\Database\DBAL\PDOStatement;
 
 interface DatabaseAdapter
