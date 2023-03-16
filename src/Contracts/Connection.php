@@ -14,6 +14,12 @@ interface Connection extends ConnectionInterface
     /** @return string */
     public function getTablePrefix();
 
+    /**
+     * @param string $prefix
+     * @return Connection
+     * */
+    public function setTablePrefix($prefix);
+
     /** @return PDO */
     public function getPdo();
 
