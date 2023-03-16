@@ -102,11 +102,13 @@ final class Column
     public static function mapType(string $type): string
     {
         switch ($type) {
+            case 'bigInteger':
             case Types::ASCII_STRING:
             case Types::STRING:
             case Types::GUID:
             case Types::BIGINT:
                 return 'text';
+            case 'longText':
             case Types::TEXT:
             case Types::BLOB:
             case Types::BINARY:
