@@ -1,5 +1,12 @@
 # Netflex Database abstraction layer
 
+<p>
+<a href="https://github.com/netflex-sdk/dbal/actions"><img src="https://github.com/netflex-sdk/dbal/actions/workflows/static_analysis.yml/badge.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/netflex/dbal"><img src="https://img.shields.io/packagist/dt/netflex/dbal" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/netflex/dbal"><img src="https://img.shields.io/packagist/v/netflex/dbal" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/netflex/dbal"><img src="https://img.shields.io/packagist/l/netflex/dbal" alt="License"></a>
+</p>
+
 This package provides a database abstraction layer for Netflex.
 
 Its used internally by the [Netflex Database driver for Laravel](https://github.com/netflex-sdk/database).
