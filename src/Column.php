@@ -119,6 +119,7 @@ final class Column
             case Types::DATE_MUTABLE:
             case Types::DATE_IMMUTABLE:
                 return 'date';
+            case 'timestamp':
             case Types::DATETIME_MUTABLE:
             case Types::DATETIME_IMMUTABLE:
             case Types::DATETIMETZ_MUTABLE:
