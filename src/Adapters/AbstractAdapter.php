@@ -10,17 +10,31 @@ use Netflex\Database\DBAL\PDOStatement;
 use Netflex\Database\DBAL\Contracts\DatabaseAdapter;
 use Netflex\Database\DBAL\Contracts\Connection;
 
+use Illuminate\Support\Str;
+
 abstract class AbstractAdapter implements DatabaseAdapter
 {
     protected Connection $connection;
 
+    protected string $tablePrefix = '';
     protected array $reservedFields = [];
-
     protected array $reservedTableNames = [];
 
     public function __construct(Connection $connection)
     {
         $this->connection = $connection;
+        $this->setTablePrefix();
+    }
+
+    protected function setTablePrefix()
+    {
+        if ($tablePrefix = $this->tablePrefix) {
+            $connection = $this->connection;
+
+            if (!$connection->getTablePrefix() || Str::startsWith($connection->getTablePrefix(), $tablePrefix)) {
+                $connection->setTablePrefix($tablePrefix . $connection->getTablePrefix());
+            }
+        }
     }
 
     public function select(PDOStatement $statement, array $arguments, Closure $closure): bool
