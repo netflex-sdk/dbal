@@ -26,7 +26,7 @@ class SchemaManager extends AbstractSchemaManager
      */
     protected function _getPortableTableColumnDefinition($tableColumn)
     {
-        return $tableColumn->toDoctrineColumn($tableColumn);
+        return $tableColumn->toDoctrineColumn();
     }
 
     public function listTableColumns($table, $database = null)
