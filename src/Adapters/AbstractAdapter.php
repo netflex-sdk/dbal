@@ -16,6 +16,8 @@ abstract class AbstractAdapter implements DatabaseAdapter
 
     protected array $reservedFields = [];
 
+    protected array $reservedTableNames = [];
+
     public function __construct(Connection $connection)
     {
         $this->connection = $connection;
@@ -65,15 +67,19 @@ abstract class AbstractAdapter implements DatabaseAdapter
         return false;
     }
 
-    public function getReservedFields(): array
+    public function getReservedColumns(): array
     {
         return $this->reservedFields;
     }
 
+    public function getReservedTableNames(): array
+    {
+        return $this->reservedTableNames;
+    }
+
     public function selectColumns(PDOStatement $statement, array $arguments, Closure $callback): bool
     {
-        $table = $arguments['table'];
-        $fields = Column::getReservedFields($this->connection, $table);
+        $fields = Column::getReservedColumns($this->connection);
 
         $callback($fields);
 
