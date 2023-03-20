@@ -4,6 +4,7 @@ namespace Netflex\Database\DBAL\Contracts;
 
 use Illuminate\Database\ConnectionInterface;
 
+use Netflex\API\Contracts\APIClient;
 use Netflex\Database\DBAL\PDO;
 use Netflex\Database\DBAL\Contracts\DatabaseAdapter;
 
@@ -22,6 +23,8 @@ interface Connection extends ConnectionInterface
 
     /** @return PDO */
     public function getPdo();
+
+    public function getClient(): APIClient;
 
     /** @return string|null */
     public function getName();

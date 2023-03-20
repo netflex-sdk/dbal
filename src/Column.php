@@ -61,12 +61,12 @@ final class Column
     {
         return collect(static::reserved($connection))
             ->map(fn ($field, $key) => [
-                'column'  => $key,
-                'type'   => $field['type'],
-                'notnull' => $field['notnull'] ?? false,
-                'default' => $field['default'] ?? null,
+                'column'        => $key,
+                'type'          => $field['type'],
+                'notnull'       => $field['notnull'] ?? false,
+                'default'       => $field['default'] ?? null,
                 'autoincrement' => $field['autoincrement'] ?? false,
-                'comment' => $field['comment'] ?? '',
+                'comment'       => $field['comment'] ?? '',
             ])
             ->values()
             ->map(fn ($field) => new static($field))
@@ -100,11 +100,13 @@ final class Column
     public static function mapType(string $type): string
     {
         switch ($type) {
+            case 'bigInteger':
             case Types::ASCII_STRING:
             case Types::STRING:
             case Types::GUID:
             case Types::BIGINT:
                 return 'text';
+            case 'longText':
             case Types::TEXT:
             case Types::BLOB:
             case Types::BINARY:
@@ -126,7 +128,7 @@ final class Column
             case Types::DATETIMETZ_IMMUTABLE:
                 return 'datetime';
             default:
-                return 'text';
+                return $type;
         }
     }
 
