@@ -4,6 +4,8 @@ namespace Netflex\Database\DBAL;
 
 use PDO as BasePDO;
 
+use Illuminate\Support\Facades\Config;
+
 use Netflex\API\Contracts\APIClient;
 use Netflex\API\Facades\API;
 use Netflex\Query\Builder;
@@ -21,8 +23,36 @@ final class PDO extends BasePDO
     public function __construct(array $parameters)
     {
         parent::__construct('sqlite::memory:');
-        $this->connection = $parameters['connection'] ?? 'default';
+        $this->setup($parameters);
+    }
+
+    protected function setup(array $parameters)
+    {
+        $this->setApiConnection($parameters);
+        $this->setLogging($parameters);
+    }
+
+    protected function setLogging(array $parameters)
+    {
         $this->logging = $parameters['logging'] ?? false;
+    }
+
+    protected function setApiConnection(array $parameters)
+    {
+        if (!array_key_exists('connection', $parameters)) {
+            if (array_key_exists('public_key', $parameters) && array_key_exists('private_key', $parameters)) {
+                $name = md5($parameters['public_key']);
+
+                Config::set('api.connections.' . $name, [
+                    'publicKey' => $parameters['public_key'],
+                    'privateKey' => $parameters['private_key'],
+                ]);
+
+                $parameters['connection'] = $name;
+            }
+        }
+
+        $this->connection = $parameters['connection'] ?? 'default';
     }
 
     public function setAdapter(DatabaseAdapter $adapter)
