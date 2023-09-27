@@ -13,6 +13,12 @@ This package provides the database abstraction layer for the Netflex database dr
 
 This package supports PHP 7.4 through 8.2. Usually you should let composer determine which version to install, but if you want to force a specific version, you can do so by specifying the version constraint in your composer.json file.
 
+For PHP ^8.1:
+
+```
+composer require netflex/dbal:^3.0
+```
+
 For PHP ^8.0:
 
 ```
